@@ -1,0 +1,28 @@
+services:
+  web:
+    image: praqma/network-multitool:latest
+    container_name: web
+    networks:
+      - frontend
+
+  app:
+    image: praqma/network-multitool:latest
+    container_name: app
+    networks:
+      - frontend
+      - backend
+
+  db:
+    image: praqma/network-multitool:latest
+    container_name: db
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+    name: frontend
+
+  backend:
+    driver: macvlan
+    name: backend
